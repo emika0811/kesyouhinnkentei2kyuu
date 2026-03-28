@@ -1,1 +1,1 @@
-# kesyouhinnkentei2kyuu
+# cosmetic_2_seibunn
