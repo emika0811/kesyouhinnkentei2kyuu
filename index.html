@@ -465,12 +465,40 @@
         font-size: 16px;
       }
     }
+    .hero-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 20px;
+  overflow: hidden;
+}
+
+.hero-banner-img {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 760px) {
+  .hero-banner {
+    margin-bottom: 16px;
+  }
+
+  .hero-banner-img {
+    border-radius: 16px;
+  }
+}
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1>化粧品検定2級 成分問題集</h1>
+      <section class="hero-banner">
+  <img src="header.jpg" alt="化粧品検定2級 成分問題集 ヘッダー" class="hero-banner-img">
+</section>
       <p>
         化粧品検定2級の公式テキストを基に、化粧品検定2級に出てくる成分とその効果を網羅した問題集です。
         公式テキストと併用して使えば合格間違いなし！
@@ -503,7 +531,7 @@
         </div>
         <div class="mode-card" data-mode="wrong_only">
           <div class="mode-title">間違い復習</div>
-          <div class="mode-desc">過去にミスした問題だけを再挑戦。</div>
+          <div class="mode-desc">過去に間違えた問題に再挑戦。</div>
         </div>
       </div>
 
