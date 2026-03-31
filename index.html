@@ -321,13 +321,12 @@
       margin-bottom: 16px;
     }
 
-    .mode-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
     .mode-card {
       border: 1px solid var(--border);
       background: #fff;
@@ -344,7 +343,7 @@
     .mode-card.active {
       border: 2px solid #ff8ff0;
       background: linear-gradient(180deg, #fff 0%, #fbecf8 100%);
-      box-shadow: 0 8px 18px rgba(219, 140, 255, 0.12);
+      box-shadow: 0 8px 18px rgba(255, 140, 245, 0.12);
     }
 
     .mode-title {
@@ -362,12 +361,11 @@
 
     .home-form-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
       align-items: end;
       margin-bottom: 14px;
     }
-
     .chip-row {
       display: flex;
       flex-wrap: wrap;
@@ -417,55 +415,66 @@
       display: none !important;
     }
 
-    @media (max-width: 1100px) {
-      .stats-grid-home,
-      .mode-grid,
-      .home-form-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
+@media (max-width: 1100px) {
+  .stats-grid-home,
+  .mode-grid,
+  .home-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-    @media (max-width: 760px) {
-      .container {
-        padding: 12px;
-      }
+@media (max-width: 760px) {
+  .container {
+    padding: 12px;
+  }
 
-      .card {
-        padding: 18px;
-        border-radius: 24px;
-      }
+  .card {
+    padding: 18px;
+    border-radius: 24px;
+  }
 
-      .home-top {
-        flex-direction: column;
-        align-items: stretch;
-      }
+  .home-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-      .top-actions {
-        justify-content: flex-start;
-      }
+  .top-actions {
+    justify-content: flex-start;
+  }
 
-      .stats-grid-home,
-      .mode-grid,
-      .home-form-grid {
-        grid-template-columns: 1fr;
-      }
+  .stats-grid-home,
+  .mode-grid,
+  .home-form-grid {
+    grid-template-columns: 1fr;
+  }
 
-      .home-title h2 {
-        font-size: 26px;
-      }
+  .home-title h2 {
+    font-size: 26px;
+  }
 
-      .stat-value {
-        font-size: 28px;
-      }
+  .stat-value {
+    font-size: 28px;
+  }
 
-      select,
-      input[type="number"],
-      input[type="text"] {
-        height: 54px;
-        font-size: 16px;
-      }
-    }
-    .hero-banner {
+  select,
+  input[type="number"],
+  input[type="text"] {
+    height: 54px;
+    font-size: 16px;
+  }
+
+  /* ←ここにヘッダー追加 */
+  .hero-banner {
+    margin-bottom: 16px;
+  }
+
+  .hero-banner-img {
+    border-radius: 16px;
+  }
+}
+
+/* PC共通（ここはそのまま） */
+.hero-banner {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -480,16 +489,6 @@
   display: block;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-@media (max-width: 760px) {
-  .hero-banner {
-    margin-bottom: 16px;
-  }
-
-  .hero-banner-img {
-    border-radius: 16px;
-  }
 }
   </style>
 </head>
@@ -520,37 +519,28 @@
 
       <div class="stats-grid-home" id="home-stats"></div>
 
-      <div class="mode-grid">
-        <div class="mode-card active" data-mode="random">
-          <div class="mode-title">ランダム出題</div>
-          <div class="mode-desc">全体からランダムに出題。まず全範囲を回したいとき向け。</div>
-        </div>
-        <div class="mode-card" data-mode="category">
-          <div class="mode-title">カテゴリ指定</div>
-          <div class="mode-desc">保湿やシミなど分野を絞って集中演習。</div>
-        </div>
-        <div class="mode-card" data-mode="wrong_only">
-          <div class="mode-title">間違い復習</div>
-          <div class="mode-desc">過去に間違えた問題に再挑戦。</div>
-        </div>
+    <div class="mode-grid">
+      <div class="mode-card active" data-mode="random">
+        <div class="mode-title">出題</div>
+        <div class="mode-desc">選んだカテゴリからランダムに出題。</div>
+      </div>
+      <div class="mode-card" data-mode="wrong_only">
+        <div class="mode-title">間違い復習</div>
+        <div class="mode-desc">過去にミスした問題だけを再挑戦。</div>
+      </div>
+    </div>
+
+    <div class="home-form-grid">
+      <div>
+        <label for="count-input">問題数</label>
+        <input id="count-input" type="number" min="1" max="100" value="10" />
       </div>
 
-      <div class="home-form-grid">
-        <div>
-          <label for="category-select">カテゴリ</label>
-          <select id="category-select"></select>
-        </div>
-
-        <div>
-          <label for="count-input">問題数</label>
-          <input id="count-input" type="number" min="1" max="100" value="10" />
-        </div>
-
-        <div>
-          <label for="search-input">問題検索</label>
-          <input id="search-input" type="text" placeholder="例：ヒアルロン酸、シミ、ナイアシンアミド" />
-        </div>
+      <div>
+        <label for="search-input">問題検索</label>
+        <input id="search-input" type="text" placeholder="例：ヒアルロン酸、シミ、ナイアシンアミド" />
       </div>
+    </div>
 
       <div class="chip-row" id="category-chips"></div>
 
@@ -560,11 +550,10 @@
         <span class="match-count" id="match-count-text"></span>
       </div>
 
-      <select id="mode-select" class="hidden-control">
-        <option value="random">ランダム出題</option>
-        <option value="category">カテゴリ指定</option>
-        <option value="wrong_only">間違い復習</option>
-      </select>
+    <select id="mode-select" class="hidden-control">
+      <option value="random">出題</option>
+      <option value="wrong_only">間違い復習</option>
+    </select>
     </section>
 
     <section id="quiz-screen" class="card hidden">
@@ -753,12 +742,12 @@
     const state = {
       progress: loadProgress(),
       currentScreen: "home",
-      setup: {
-        mode: "random",
-        category: "ALL",
-        count: 10,
-        keyword: ""
-      },
+    setup: {
+      mode: "random",
+      categories: [],
+      count: 10,
+      keyword: ""
+    },
       session: {
         questions: [],
         currentIndex: 0,
@@ -831,33 +820,39 @@
       return { total, correct, byCategory };
     }
 
-    function filteredPool() {
-      let pool = [...QUESTIONS];
-      const keyword = (state.setup.keyword || "").trim().toLowerCase();
+function filteredPool() {
+  let pool = [...QUESTIONS];
+  const keyword = (state.setup.keyword || "").trim().toLowerCase();
 
-      if (state.setup.category !== "ALL") {
-        pool = pool.filter(q => q.category === state.setup.category);
-      }
+  // カテゴリ絞り込み
+  // categories が空なら ALL扱い
+  if (state.setup.categories.length > 0) {
+    pool = pool.filter(q => state.setup.categories.includes(q.category));
+  }
 
-      if (state.setup.mode === "wrong_only") {
-        const wrongIds = new Set(state.progress.history.filter(h => !h.is_correct).map(h => h.id));
-        pool = pool.filter(q => wrongIds.has(q.id));
-      }
+  // 間違い復習モード
+  if (state.setup.mode === "wrong_only") {
+    const wrongIds = new Set(
+      state.progress.history.filter(h => !h.is_correct).map(h => h.id)
+    );
+    pool = pool.filter(q => wrongIds.has(q.id));
+  }
 
-      if (keyword) {
-        pool = pool.filter(q => {
-          const text = [
-            q.category,
-            q.question,
-            ...(q.choices || []),
-            q.explanation || ""
-          ].join(" ").toLowerCase();
-          return text.includes(keyword);
-        });
-      }
+  // キーワード検索
+  if (keyword) {
+    pool = pool.filter(q => {
+      const text = [
+        q.category,
+        q.question,
+        ...(q.choices || []),
+        q.explanation || ""
+      ].join(" ").toLowerCase();
+      return text.includes(keyword);
+    });
+  }
 
-      return pool;
-    }
+  return pool;
+}
 
     function pickQuestions() {
       return shuffle(filteredPool()).slice(0, Math.max(1, Math.min(100, Number(state.setup.count) || 1)));
@@ -872,64 +867,88 @@
       state.currentScreen = name;
     }
 
-    function renderModeCards() {
-      document.querySelectorAll(".mode-card").forEach(card => {
-        card.classList.toggle("active", card.dataset.mode === state.setup.mode);
-      });
-      document.getElementById("mode-select").value = state.setup.mode;
-      document.getElementById("category-select").disabled = false;
-    }
+function renderModeCards() {
+  document.querySelectorAll(".mode-card").forEach(card => {
+    card.classList.toggle("active", card.dataset.mode === state.setup.mode);
+  });
+  document.getElementById("mode-select").value = state.setup.mode;
+}
 
-    function renderCategoryChips() {
-      const area = document.getElementById("category-chips");
-      const list = ["ALL", ...categories()];
-      area.innerHTML = "";
+function renderCategoryChips() {
+  const area = document.getElementById("category-chips");
+  const list = categories();
+  area.innerHTML = "";
 
-      list.forEach(cat => {
-        const btn = document.createElement("button");
-        btn.className = "chip" + (state.setup.category === cat ? " active" : "");
-        btn.textContent = cat;
-        btn.type = "button";
-        btn.addEventListener("click", () => {
-          state.setup.category = cat;
-          document.getElementById("category-select").value = cat;
-          renderCategoryChips();
-          updateMatchCount();
-        });
-        area.appendChild(btn);
-      });
-    }
+  // ALLボタン
+  const allBtn = document.createElement("button");
+  allBtn.className = "chip" + (state.setup.categories.length === 0 ? " active" : "");
+  allBtn.textContent = "ALL";
+  allBtn.type = "button";
+  allBtn.addEventListener("click", () => {
+    state.setup.categories = [];
+    renderCategoryChips();
+    updateMatchCount();
+  });
+  area.appendChild(allBtn);
+
+  // 各カテゴリボタン
+  list.forEach(cat => {
+    const btn = document.createElement("button");
+    const isActive = state.setup.categories.includes(cat);
+
+    btn.className = "chip" + (isActive ? " active" : "");
+    btn.textContent = cat;
+    btn.type = "button";
+
+    btn.addEventListener("click", () => {
+      // ALL状態から1個選ぶ
+      if (state.setup.categories.length === 0) {
+        state.setup.categories = [cat];
+      } else {
+        if (state.setup.categories.includes(cat)) {
+          state.setup.categories = state.setup.categories.filter(v => v !== cat);
+        } else {
+          state.setup.categories.push(cat);
+        }
+      }
+
+      // 全解除されたらALL扱い
+      if (state.setup.categories.length === 0) {
+        state.setup.categories = [];
+      }
+
+      renderCategoryChips();
+      updateMatchCount();
+    });
+
+    area.appendChild(btn);
+  });
+}
 
     function updateMatchCount() {
       const n = filteredPool().length;
       document.getElementById("match-count-text").textContent = `条件一致：${n}問`;
     }
 
-    function renderHome() {
-      const stats = getStats();
-      const homeStats = document.getElementById("home-stats");
-      const accuracy = stats.total === 0 ? "-" : ((stats.correct / stats.total) * 100).toFixed(1) + "%";
+function renderHome() {
+  const stats = getStats();
+  const homeStats = document.getElementById("home-stats");
+  const accuracy = stats.total === 0 ? "-" : ((stats.correct / stats.total) * 100).toFixed(1) + "%";
 
-      homeStats.innerHTML = `
-        <div class="stat-box"><div class="stat-label">登録問題数</div><div class="stat-value">${QUESTIONS.length}</div></div>
-        <div class="stat-box"><div class="stat-label">総回答数</div><div class="stat-value">${stats.total}</div></div>
-        <div class="stat-box"><div class="stat-label">累計正解数</div><div class="stat-value">${stats.correct}</div></div>
-        <div class="stat-box"><div class="stat-label">正答率</div><div class="stat-value">${accuracy}</div></div>
-      `;
+  homeStats.innerHTML = `
+    <div class="stat-box"><div class="stat-label">登録問題数</div><div class="stat-value">${QUESTIONS.length}</div></div>
+    <div class="stat-box"><div class="stat-label">総回答数</div><div class="stat-value">${stats.total}</div></div>
+    <div class="stat-box"><div class="stat-label">累計正解数</div><div class="stat-value">${stats.correct}</div></div>
+    <div class="stat-box"><div class="stat-label">正答率</div><div class="stat-value">${accuracy}</div></div>
+  `;
 
-      const categorySelect = document.getElementById("category-select");
-      categorySelect.innerHTML =
-        `<option value="ALL">ALL</option>` +
-        categories().map(cat => `<option value="${cat}">${cat}</option>`).join("");
-      categorySelect.value = state.setup.category;
+  document.getElementById("count-input").value = state.setup.count;
+  document.getElementById("search-input").value = state.setup.keyword || "";
 
-      document.getElementById("count-input").value = state.setup.count;
-      document.getElementById("search-input").value = state.setup.keyword || "";
-
-      renderModeCards();
-      renderCategoryChips();
-      updateMatchCount();
-    }
+  renderModeCards();
+  renderCategoryChips();
+  updateMatchCount();
+}
 
     function renderQuiz() {
       const q = state.session.questions[state.session.currentIndex];
@@ -1109,26 +1128,25 @@
       });
     }
 
-    function startQuiz() {
-      state.setup.mode = document.getElementById("mode-select").value;
-      state.setup.category = document.getElementById("category-select").value;
-      state.setup.count = Number(document.getElementById("count-input").value) || 10;
-      state.setup.keyword = document.getElementById("search-input").value.trim();
+function startQuiz() {
+  state.setup.mode = document.getElementById("mode-select").value;
+  state.setup.count = Number(document.getElementById("count-input").value) || 10;
+  state.setup.keyword = document.getElementById("search-input").value.trim();
 
-      const picked = pickQuestions();
-      if (picked.length === 0) {
-        alert("出題できる問題がないよ。条件をゆるめるか、復習モードの履歴を確認してね。");
-        return;
-      }
+  const picked = pickQuestions();
+  if (picked.length === 0) {
+    alert("出題できる問題がないよ。条件をゆるめるか、復習モードの履歴を確認してね。");
+    return;
+  }
 
-      state.session.questions = picked;
-      state.session.currentIndex = 0;
-      state.session.answers = [];
-      state.selected = [];
-      state.lastResult = null;
-      renderQuiz();
-      showScreen("quiz");
-    }
+  state.session.questions = picked;
+  state.session.currentIndex = 0;
+  state.session.answers = [];
+  state.selected = [];
+  state.lastResult = null;
+  renderQuiz();
+  showScreen("quiz");
+}
 
     function resetProgress() {
       if (!confirm("履歴を全部リセットする？")) return;
@@ -1138,54 +1156,47 @@
       showScreen("home");
     }
 
-    function initEvents() {
-      document.querySelectorAll(".mode-card").forEach(card => {
-        card.addEventListener("click", () => {
-          state.setup.mode = card.dataset.mode;
-          renderModeCards();
-          renderCategoryChips();
-          updateMatchCount();
-        });
-      });
+function initEvents() {
+  document.querySelectorAll(".mode-card").forEach(card => {
+    card.addEventListener("click", () => {
+      state.setup.mode = card.dataset.mode;
+      renderModeCards();
+      updateMatchCount();
+    });
+  });
 
-      document.getElementById("category-select").addEventListener("change", (e) => {
-        state.setup.category = e.target.value;
-        renderCategoryChips();
-        updateMatchCount();
-      });
+  document.getElementById("count-input").addEventListener("input", (e) => {
+    state.setup.count = Number(e.target.value) || 10;
+  });
 
-      document.getElementById("count-input").addEventListener("input", (e) => {
-        state.setup.count = Number(e.target.value) || 10;
-      });
+  document.getElementById("search-input").addEventListener("input", (e) => {
+    state.setup.keyword = e.target.value;
+    updateMatchCount();
+  });
 
-      document.getElementById("search-input").addEventListener("input", (e) => {
-        state.setup.keyword = e.target.value;
-        updateMatchCount();
-      });
+  document.getElementById("preview-btn").addEventListener("click", () => {
+    updateMatchCount();
+    alert(`条件に合う問題は ${filteredPool().length} 問あります。`);
+  });
 
-      document.getElementById("preview-btn").addEventListener("click", () => {
-        updateMatchCount();
-        alert(`条件に合う問題は ${filteredPool().length} 問あります。`);
-      });
+  document.getElementById("start-btn").addEventListener("click", startQuiz);
+  document.getElementById("submit-btn").addEventListener("click", submitAnswer);
+  document.getElementById("next-btn").addEventListener("click", nextStep);
 
-      document.getElementById("start-btn").addEventListener("click", startQuiz);
-      document.getElementById("submit-btn").addEventListener("click", submitAnswer);
-      document.getElementById("next-btn").addEventListener("click", nextStep);
+  document.getElementById("show-stats-btn").addEventListener("click", () => {
+    renderStats();
+    showScreen("stats");
+  });
 
-      document.getElementById("show-stats-btn").addEventListener("click", () => {
-        renderStats();
-        showScreen("stats");
-      });
+  document.getElementById("reset-btn").addEventListener("click", resetProgress);
 
-      document.getElementById("reset-btn").addEventListener("click", resetProgress);
-
-      ["back-home-btn-1", "back-home-btn-2", "back-home-btn-3", "back-home-btn-4"].forEach(id => {
-        document.getElementById(id).addEventListener("click", () => {
-          renderHome();
-          showScreen("home");
-        });
-      });
-    }
+  ["back-home-btn-1", "back-home-btn-2", "back-home-btn-3", "back-home-btn-4"].forEach(id => {
+    document.getElementById(id).addEventListener("click", () => {
+      renderHome();
+      showScreen("home");
+    });
+  });
+}
 
     validateQuestions();
     initEvents();
