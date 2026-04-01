@@ -1,0 +1,15 @@
+{
+  "name": "化粧品検定2級 成分問題集",
+  "short_name": "成分クイズ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbecf8",
+  "theme_color": "#ff8cf0",
+  "icons": [
+    {
+      "src": "icon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
